@@ -1807,6 +1807,45 @@ body {
 	clear: both
 }
 
+/*****************************************************************************/
+/*
+/* Posts
+/*
+/*****************************************************************************/
+
+/* standard */
+.entry-content pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em;
+}
+
+.entry-content ul, .entry-content ol {
+  margin-left: 1.35em;
+}
+
+.entry-content code {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .2em;
+}
+
+.entry-content pre code {
+  border: none;
+}
+
+/* terminal */
+.entry-content pre.terminal {
+  border: 1px solid #000;
+  background-color: #333;
+  color: #FFF;
+}
+
+.entry-content pre.terminal code {
+  background-color: #333;
+}
+/* end standard */
+
 .entry-content {
 	margin-bottom: 26px;
 	margin-bottom: 1.625rem;
@@ -1814,6 +1853,7 @@ body {
 	font-size: 1rem;
 	line-height: 1.625
 }
+
 
 .entry-content p>a,.entry-content li>a {
 	border-bottom: 1px dotted #a2a2a2
@@ -1993,7 +2033,7 @@ body {
 	font-size: .75rem;
 	color: #bbb;
 	text-transform: uppercase;
-	float: right
+	float: center
 }
 
 .entry-meta a {
@@ -2002,6 +2042,10 @@ body {
 
 .entry-meta .vcard:before {
 	content: " by "
+}
+
+.entry-meta .index-entry-date{
+	float: right
 }
 
 .entry-meta .tag {
@@ -2069,6 +2113,7 @@ body {
 		line-height: 1.3
 	}
 }
+
 
 #post #disqus_thread,#page #disqus_thread {
 	padding: 25px 40px;
@@ -2296,7 +2341,7 @@ body {
 @media only screen and (min-width:62.5em) {
 	#post-index article {
 		padding: 5px 20px;
-		margin-bottom: 10px
+		margin-bottom: 15px
 	}
 }
 

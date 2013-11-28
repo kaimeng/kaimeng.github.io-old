@@ -2,7 +2,7 @@
 layout: post
 title: "使用 pvDev 开发 Django 项目"
 description: "使用 pvDev 开发 Django 项目"
-tags: [技术]
+tags: [技术, Django]
 comments: true
 share: true
 ---
@@ -19,6 +19,7 @@ pyDev 是 Eclipse 下的 Python 开发插件，可以使用该插件在Eclisp上
 ## 新建项目
 
 好像 pyDev 有 bug，在没有 pyDev 项目时无法建立 django 项目。所以按照下面的步骤新建项目：
+
 1. 随便建立一个普通的 pyDev 项目
 2. 新建 Django 项目
 

@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "使用 Github 搭建博客"
-description: "使用 Github 搭建博客"
-tags: [技术]
+description: "使用 Octopress 基于 Github 搭建个人博客系统"
+tags: [技术, Jekyll, Octopress]
 comments: true
 share: true
+modified: 2013-11-28
 ---
 
 最近接触人工智能的开源项目 conceptNet 开始学习使用 github，然后发现竟然可以基于 github 搭建自己的博客， 因为一直在想有自己的博客，在网上搜了一些资料之后，果断开始折腾。
@@ -82,11 +83,7 @@ share: true
 
 	$ rake preview
 
-在浏览器中输入 http://127.0.0.1:4000  看到如下图：
-
-![](/images/posts/octopress-success.jpg)
-
-恭喜你，已经成功部署了 Octopress 系统，按 Ctrl+C 退出。
+在浏览器中输入 `http://127.0.0.1:4000`  如能看到博客界面，恭喜你，已经成功部署了 Octopress 系统，按 Ctrl+C 退出。
 	
 接下来要发布到上面我们创建的 github 库中。
 
@@ -147,6 +144,8 @@ windows 下建议使用 [MrakdownPad](http://markdownpad.com/)，非常好用的
     修改为
     source = File.read(@file, :encoding => "utf-8")
 
+同样如果是 jekyll 1.3.0 如上类似修改。
+
 # 主题
 [这里](https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes)有很多第三方主题，挑自己喜欢的，按照各个主题的说明进行安装。
 
@@ -178,9 +177,9 @@ clone master分支到 _deploy
 	$ git pull origin master  # update the local master branch
 
 # 设置评论
-octopress 自带的是 Disqus 的评论系统，但国内的速度有点，并且也不支持国内的社交账号登录，这里使用国内的[多说](http://duoshuo.com/)。可以参考 Haveee 的[为 Octopress 添加多说评论系统](http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html)
+octopress 自带的是 Disqus 的评论系统，但国内的速度有点慢，并且也不支持国内的社交账号登录，这里使用国内的[多说](http://duoshuo.com/)。可以参考 Haveee 的[为 Octopress 添加多说评论系统](http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html)
 
-在多说上注册账号，点击 **我要安装**，进行相应的设置，记录你的多说域名 `duoshuo_name`。
+在多说上注册账号，点击 *我要安装*，进行相应的设置，记录你的多说域名 `duoshuo_name`。
 在 `_config.yml` 文件中加入如下配置：
 
 	# Duoshuo comments
@@ -189,37 +188,45 @@ octopress 自带的是 Disqus 的评论系统，但国内的速度有点，并�
 
 在 `source/_layouts/post.html` 文件中 disqus 的代码下方添加如下代码
 
+{% highlight html %}
 {% raw %}
 
-	{% if site.duoshuo_name and page.comments == true %}
-	  <section id="comment">
-        <h1>发表评论</h1>
-		{% include post/duoshuo.html %}
-	  </section>
-	{% endif %}
+{% if site.duoshuo_name and page.comments == true %}
+  <section id="comment">
+    <h1>发表评论</h1>
+	{% include post/duoshuo.html %}
+  </section>
+{% endif %}
 {% endraw %}
+{% endhighlight %}
 
 在 `source\_includes\post\` 文件夹中添加 `duoshuo.html` 文件，文件代码
 
+{% highlight html %}
 {% raw %}
 
-	{% if site.duoshuo_name %}
-	<!-- Duoshuo Comment BEGIN -->
-	  <div class="ds-thread"></div>
-	  <script type="text/javascript">
-	  var duoshuoQuery = {short_name:"{{ site.duoshuo_name }}"};
-		(function() {
-			var ds = document.createElement('script');
-			ds.type = 'text/javascript';ds.async = true;
-			ds.src = 'http://static.duoshuo.com/embed.js';
-			ds.charset = 'UTF-8';
-			(document.getElementsByTagName('head')[0] 
-			|| document.getElementsByTagName('body')[0]).appendChild(ds);
-		})();
-		</script>
-	<!-- Duoshuo Comment END -->
-	{% endif %}
+{% if site.duoshuo_name %}
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread"></div>
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"{{ site.duoshuo_name }}"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+{% endif %}
 {% endraw %}
+{% endhighlight %}
 
 # 其它设置
 因国内不能登录 twitter, 注释掉 `_config.yml` 中有关 twitter 中的内容，可以加快加载速度，同样注释掉 `source\_includes\custom\head.html` 中的 Google 字体。
+
+## 另
+后来发现使用原生的 Jekyll 有很多非常漂亮的[网站](https://github.com/mojombo/jekyll/wiki/sites)，而且并不比 Octopress 复杂，反而觉得要简单一些，便参考 [HPSTR](http://mademistakes.com/articles/hpstr-jekyll-theme) 主题做了现在的页面。
+
